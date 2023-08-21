@@ -106,7 +106,7 @@ class Question(models.Model):
     # Foreign key to lesson
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     # question text
-    question_text = models.CharField(null=False, max_length=500, default='quetion')
+    question_text = models.CharField(null=False, max_length=500, default='question')
     # question grade/mark
     grade = models.IntegerField(default=0)
     # <HINT> A sample model method to calculate if learner get the score of the question

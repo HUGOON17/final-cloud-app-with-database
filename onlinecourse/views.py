@@ -125,11 +125,11 @@ def submit(request, course_id):
                 choice_id = int(value)
             submitted_anwsers.append(choice_id)
         return submitted_anwsers
-    selected_choice_ids = extract_answers(request)
-    submission.choice.id=selected_choice_ids
-    submission.save()
+    choices = extract_answers(request)
+    submission.choice.set(choices)
+    submission_id = submission.id
         
-    return HttpResponseRedirect(reverse(viewname='onlinecourse:show_result', args=(course.id,submission.id)))
+    return HttpResponseRedirect(reverse(viewname='onlinecourse:show_result', args=(course_id,submission_id)))
 
 # <HINT> Create an exam result view to check if learner passed exam and show their question results and result for each question,
 # you may implement it based on the following logic:

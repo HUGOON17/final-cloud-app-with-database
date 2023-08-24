@@ -125,8 +125,10 @@ def submit(request, course_id):
                 choice_id = int(value)
             submitted_anwsers.append(choice_id)
         return submitted_anwsers
-    choices = extract_answers(request)
-    submission.choice.set(choices)
+    choices_ids = extract_answers(request)
+    for choice_id in choices_ids:
+        choice = get_object_or_404(Choice,pk=choice_id)
+        submission.choice.set(choice)
     submission_id = submission.id
         
     return HttpResponseRedirect(reverse(viewname='onlinecourse:show_result', args=(course_id,submission_id)))
